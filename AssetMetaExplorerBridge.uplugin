@@ -12,6 +12,8 @@
 	"SupportURL": "",
 	"EngineVersion": "5.7.0",
 	"CanContainContent": false,
+	  "EnabledByDefault": true,
+
 	"Installed": true,
 	"Modules": [
 		{
