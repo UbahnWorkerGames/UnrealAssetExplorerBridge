@@ -5,15 +5,13 @@
 	"FriendlyName": "Asset Meta Explorer Bridge",
 	"Description": "Plugin by Ubahnworker Games to extract Gamedata",
 	"Category": "Editor",
-	"CreatedBy": "",
-	"CreatedByURL": "",
+	"CreatedBy": "Ubahnworker Games",
+	"CreatedByURL": "https://github.com/UbahnWorkerGames/UnrealAssetExplorerBridge",
 	"DocsURL": "",
 	"MarketplaceURL": "",
 	"SupportURL": "",
 	"EngineVersion": "5.7.0",
 	"CanContainContent": false,
-	  "EnabledByDefault": true,
-
 	"Installed": true,
 	"Modules": [
 		{

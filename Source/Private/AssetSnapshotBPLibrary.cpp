@@ -826,6 +826,32 @@ namespace AssetSnapshot
         return P;
     }
 
+    // Project-layout zips can contain "<Project>/Content/...".
+    // We keep the project folder, but drop the intermediate "Content" segment
+    // so imports become "<Project>/..." under the target Content root.
+    static FString NormalizeImportRelPath(const FString& RelPath)
+    {
+        FString P = NormalizeRelPath(RelPath);
+        if (P.IsEmpty())
+        {
+            return P;
+        }
+
+        TArray<FString> Parts;
+        P.ParseIntoArray(Parts, TEXT("/"), true);
+        if (Parts.Num() >= 2 && Parts[1].Equals(TEXT("Content"), ESearchCase::IgnoreCase))
+        {
+            Parts.RemoveAt(1);
+            return FString::Join(Parts, TEXT("/"));
+        }
+        if (Parts.Num() >= 1 && Parts[0].Equals(TEXT("Content"), ESearchCase::IgnoreCase))
+        {
+            Parts.RemoveAt(0);
+            return FString::Join(Parts, TEXT("/"));
+        }
+        return P;
+    }
+
     static bool IsSafeZipRelPath(const FString& RelPath)
     {
         FString P = NormalizeRelPath(RelPath);
@@ -959,7 +985,7 @@ namespace AssetSnapshot
                 return false;
             }
 
-            const FString RelPath = NormalizeRelPath(Name);
+            const FString RelPath = NormalizeImportRelPath(Name);
             const FString DestPath = FPaths::ConvertRelativePathToFull(DestRoot / RelPath);
 
             if (!IsImportableAssetFile(RelPath))

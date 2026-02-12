@@ -17,5 +17,5 @@ public:
     FString ImportBaseUrl = TEXT("127.0.0.1:9090");
 
     UPROPERTY(EditAnywhere, Config, Category="Import", meta=(ClampMin="1", ClampMax="65535"))
-    int32 ImportListenPort = 9090;
+    int32 ImportListenPort = 8008;
 };
